@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>后台</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		<div class="row">
+			<div class="col-md-2 head_left">
+			<div class="">
+				后台采集
+			</div>
+			</div>
+			<div class="col-md-10 head_right">
+				<div class="row">
+					<div class="col-md-1">
+						
+					</div>
+					<div class="col-md-10">
+						
+					</div>
+					<div class="col-md-1">
+						admin
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 头部END -->
+		<div class="row">
+			<div class="col-md-2">
+				
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          设置
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			      	<div class="panel-body">
+			        	<div class="list-group">
+			        		<a class="list-group-item" href="">采集设置</a>
+			        		<a class="list-group-item" href="">站点设置</a>
+			        	</div>
+			      	</div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingTwo">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			          任务
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			      	<div class="panel-body">
+			       		<div class="list-group">
+			       			<a class="list-group-item">任务列表</a>
+			       			<a class="list-group-item">添加任务</a>
+			       		</div>
+			      	</div>
+			    </div>
+			  </div>
+			  	<div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="headingThree">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				          管理员 
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+				      	<div class="panel-body">
+				        	<div class="list-group">
+				        		<a class="list-group-item">管理列表</a>
+				        		<a class="list-group-item">添加管理</a>
+				        	</div>
+				      	</div>
+				    </div>
+			  	</div>
+			  	<div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="headingFour">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				          采集管理 __MODULE__
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+				      	<div class="panel-body">
+				        	<div class="list-group">
+
+				        		<a class="list-group-item" href="__MODULE__/collect/index">
+				        			<i class="fa fa-database"></i>&nbsp;采集列表
+				        		</a>
+				        		
+				        	</div>
+				      	</div>
+				    </div>
+			  	</div>
+			</div>
+	
+		
+			</div>
+			<div class="col-md-10">
+				<div class="row">
+					<div class="col-md-10">
+						<h2>后台管理</h2>
+					</div>	
+					<div class="col-md-2">
+						<h4>
+							<ol class="breadcrumb">
+							<li><a href="">后台</a></li>
+							<li><a href="">主页</a></li>
+						</ol>
+						</h4>
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 icons-left">
+						<div class="icons-left1">
+							<i class="fa fa-bar-chart-o fa-4x"></i>
+						</div>
+						<div class="icons-right1" >
+							<h4>今日采集</h4>
+							<p>12条成功</p>
+							<p>12条成功</p>
+						</div>
+					</div>
+					<div class="col-md-3 icons-left">
+						<div class="icons-left2">
+							<i class="fa fa-line-chart fa-4x" aria-hidden="true"></i>
+						</div>
+						<div class="icons-right2">
+							<h4>已采集数据</h4>
+							<p>12条成功</p>
+							<p>12条成功</p>
+						</div>
+					</div>
+					<div class="col-md-3 icons-left">
+						<div class="icons-left3">
+							<i class="fa fa-sliders fa-4x" aria-hidden="true"></i>
+						</div>
+						<div class="icons-right3">
+							<h4>已建任务</h4>
+							<p>12条成功</p>
+							<p>12条成功</p>
+						</div>
+					</div>
+					<div class="col-md-3 icons-left">
+						<div class="icons-left4">
+							<i class="fa fa-toggle-on fa-4x" aria-hidden="true"></i>
+						</div>
+						<div class="icons-right4">
+							<h4>自动采集</h4>
+							<p>12条成功</p>
+							<p>12条成功</p>
+						</div>
+					</div>
+				</div>
+				<div class="row sys-infos" >
+					<div class="col-md-6">
+						<table class="table table-striped table-bordered">
+							<tr>
+								<th>操作系统</th>
+								<td>Windows NT 6.2</td>
+							</tr>
+							<tr>
+								<th>上传限制</th>
+								<td>2M</td>
+							</tr>
+							<tr>
+								<th>PHP版本</th>
+								<td>5.5.38</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-6">
+						<table class="table table-striped table-bordered">
+							<tr>
+								<th>数据库</th>
+								<td> mysql 5.5.53</td>
+							</tr>
+							<tr>
+								<th>运行环境</th>
+								<td> Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.5.38</td>
+							</tr>
+							<tr>
+								<th>当前版本</th>
+								<td> Caiji V1.3</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>添加收藏分类--{$Think.config.sys_webname}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/collect.css">
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		{include file="public/head"/}
+		
+		<!-- 头部END -->
+		<div class="row">
+			<div class="col-md-2">
+				{include file="public/menu"/}
+			</div>
+			<div class="col-md-10">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-2">
+							<h4>BD状态管理<small>>>添加分类</small></h4>
+							
+						</div>
+						<div class="col-md-7"></div>
+						<div class="col-md-3">
+							<h4>
+
+							</h4>
+						</div>
+					</div>
+					
+				</div>
+				<div class="container-fluid">
+					<div class="alert">
+						<div class="row">
+							<div class="col-md-6">
+								<form action="__MODULE__/collect/insertStowType" class="form-inline">
+						        	<div class="form-group">
+						        		<label>BD名称</label>
+						        		<input type="text" name="typename"  class="form-control">
+						        		<button type="submit" class="btn btn-primary">添加分类</button>
+						        	</div>
+							    </form>
+							</div>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+	<script type="text/javascript">
+	
+	</script>
+						
+</body>
+</html>

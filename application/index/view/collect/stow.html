@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>我的客户公海--{$Think.config.sys_webname}</title>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/collect.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
+
+
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<!-- 头部 -->
+
+		{include file="public/head"/}
+
+		
+
+		<!-- 头部END -->
+
+		<div class="row">
+
+			<div class="col-md-2">
+
+				{include file="public/menu"/}
+
+			</div>
+
+			<div class="col-md-10">
+
+				<div class="page-header">
+
+					<div class="row">
+
+						<div class="col-md-2">
+
+							<h4>我的客户<small>>>主页</small></h4>
+
+							
+
+						</div>
+
+						<div class="col-md-7"></div>
+
+						<div class="col-md-3">
+
+							<h4>
+
+
+
+							</h4>
+
+						</div>
+
+					</div>
+
+					
+
+				</div>
+
+				<div class="container-fluid">
+
+					<div class="alert alert-success">
+
+						<div class="row">
+
+							<div class="col-md-7">
+
+								<form action="__MODULE__/collect/stow" method="post" class="form-inline">
+
+									<div class="form-group">
+
+										<label>公司名称</label>
+
+										<input type="text" name="keyword" class="form-control" value="{$keyword}" placeholder="比如：医疗">
+
+									</div>
+
+									<div class="form-group">
+
+										<select name="typename" class="form-control">
+
+											<option value="">--请选择BD状态--</option>
+
+											{volist name="datastow" id="vodata"}
+
+											<option value="{$vodata.id}" {if condition="$stowtype eq $vodata.id"}selected{/if}>{$vodata.type_name}</option>
+
+											{/volist}
+
+										</select>
+
+									</div>
+
+									<div class="form-group">
+
+										<select name="source" class="form-control">
+
+											<option value="">--请选择来源--</option>
+
+											<option value="录单" {if condition="$source eq '录单'"}selected{/if}>录单</option>
+
+											<option value="客户公海" {if condition="$source eq '客户公海'"}selected{/if}>客户公海</option>
+
+											
+
+										</select>
+
+									</div>
+
+									<div class="form-group">
+
+										<select name="time" class="form-control">
+
+											<option value="">--请选择日期--</option>
+
+											
+
+											<option value="today" {if condition="$date eq 'today'"}selected{/if}>今天</option>
+
+											<option value="yesterday" {if condition="$date eq 'yesterday'"}selected{/if}>昨天</option>
+
+											<option value="week" {if condition="$date eq 'week'"}selected{/if}>本周</option>
+
+											<option value="last week" {if condition="$date eq 'last week'"}selected{/if}>上周</option>
+
+											<option value="month" {if condition="$date eq 'month'"}selected{/if}>本月</option>
+
+											<option value="last month" {if condition="$date eq 'last month'"}selected{/if}>上个月</option>
+
+											
+
+										</select>
+
+									</div>
+
+									<button type="submit" class="btn btn-sm btn-info">搜索</button>
+
+								</form>
+
+							</div>
+
+							<div class="col-md-5">
+
+								<div class="btn-group">
+
+									<button class="btn btn-default ">每页显示条数</button>
+
+										<button class="btn btn-default uppage {$btn1}">10</button>
+
+										<button class="btn btn-default uppage {$btn2}">20</button>
+
+										<button class="btn btn-default uppage {$btn3}">30</button>
+
+										<button class="btn btn-default uppage {$btn5}">50</button>
+
+										<button class="btn btn-default uppage {$btn10}">100</button>
+
+								</div>
+
+							</div>
+
+							<div class="col-md-2">
+
+								
+
+							</div>
+
+						</div>
+
+					</div>
+
+
+
+					<table class="table table-bordered table-striped table-responsive table-hover">
+
+						<tr class="info">
+
+							<td colspan="11">
+
+								<form onsubmit="return checkVali();" name="form1" action="__MODULE__/collect/insertData" method="post" class="form-inline">
+
+									<div class="form-group">
+
+										<label class="sr-only">客户行业</label>
+
+										<input type="text" name="company_name" class="form-control" placeholder="客户行业/公司名称">
+
+									</div>
+
+									<div class="form-group">
+										<label class="sr-only">客户名称</label>
+										<input type="text" name="linkman" class="form-control" placeholder="客户名称">
+									</div>
+									<div class="form-group">
+										<label class="sr-only">客户地区</label>
+										<input type="text" name="address" class="form-control" placeholder="客户地区/公司地址">
+									</div>
+
+									<div class="form-group">
+										<label class="sr-only">联系电话</label>
+										<input type="tel" name="telphone" class="form-control" placeholder="联系电话">
+									</div>
+
+									<div class="form-group">
+										<label class="sr-only">微信/QQ</label>
+										<input type="text" name="qq" class="form-control" placeholder="微信/QQ">
+									</div>								
+
+									<div class="form-group">
+										<label class="sr-only">沟通情况</label>
+										<textarea rows="1" style="height: 33px;" cols="25" name="notes" class="form-control" placeholder="沟通情况"></textarea>
+									</div>
+									<div class="form-group">
+										<label class="sr-only">BD状态</label>
+										<select name="stowtype" class="form-control" >
+											<option value="">--选择BD状态--</option>
+											{volist name="datastow" id="vodata"}
+											<option value="{$vodata.id}" >{$vodata.type_name}</option>
+											{/volist}
+										</select>
+									</div>
+									<button class="btn btn-danger" type="submit">录单</button>
+
+								</form>
+							</td>					
+
+						</tr>
+						<tr>
+							<td colspan="11"> 
+								客户数量：{$stownum} &nbsp;未联系客户：{$stownums}
+							</td>
+						</tr>
+						<tr class="warning">
+							<th>编号</th>
+							<th>公司名称/客户行业</th>
+							<th>客户名称</th>
+							<th>联系方式</th>
+							<th>微信/QQ号</th>
+							<th>沟通情况</th>
+							<th>沟通情况</th>
+							<th>BD状态</th>
+							<th>来源</th>
+							<th>添加时间</th>
+							<th>操作</th>
+						</tr>
+
+						{volist name="list" id="vo"}
+
+							<tr class="tr_width">
+								<td>{$vo.co_id}</td>
+								<td>{$vo.company_name}</td>
+								<td>{$vo.linkman}</td>
+								<td>{$vo.telphone}</td>
+								<td>{$vo.qq}</td>
+								<td>
+									{$vo.notes}
+								</td>
+								<td>
+									<!-- Button trigger modal -->
+
+									<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#mynotes{$vo.id}">
+									  填写沟通
+									</button>
+									<sup>{notempty name='$vo.notes' }☆{/notempty}</sup>
+
+									<!-- Modal -->
+									<div class="modal fade" id="mynotes{$vo.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+									  	<div class="modal-dialog" role="document">
+
+									    	<div class="modal-content">
+
+									      		<div class="modal-header">
+
+									        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+									        		<h4 class="modal-title" id="myModalLabel">{$vo.company_name}</h4>
+
+									      		</div>
+
+									    		<div class="modal-body">
+
+									        		<form action="__MODULE__/collect/stownotes" method="post">
+
+													<textarea rows="4"  name="notes" class="form-control">{$vo.notes}</textarea>
+
+													<input type="hidden" name="id" value="{$vo.id}"> 
+
+													<button class="btn btn-sm">提交</button>
+
+													<!-- Button trigger modal -->
+
+													<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#notes">
+
+												  查看详情
+
+													</button>
+
+
+
+												<!-- Modal -->
+
+												<div class="modal fade" id="notes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+												  <div class="modal-dialog" role="document">
+
+												    <div class="modal-content">
+
+												     	<div class="modal-header">
+
+													        <h4 class="modal-title" id="myModalLabel">查看详情</h4>
+
+													    </div>
+
+												      <div class="modal-body">
+
+												        {$vo.notes}
+
+												      </div>
+
+												      <div class="modal-footer">
+
+												        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+												      </div>
+
+												    </div>
+
+												  </div>
+
+												</div>
+
+											</form>
+
+									      </div>
+
+									      <div class="modal-footer">
+
+									        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+									      </div>
+
+									    </div>
+
+									  </div>
+
+									</div>
+
+								</td>
+
+								<td>
+
+									<span>{$vo.type_name}</span>
+
+								</td>
+
+								<td>{$vo.source}</td>
+
+								<td>{:date('Y-m-d H:i',$vo.add_time)}</td>
+
+								<td>
+
+									<a href="__MODULE__/collect/sowtype/id/{$vo.co_id}/aid/{$vo.com_id}/typeid/{$vo.stowtype}" class="btn btn-success btn-xs"> BD状态</a>
+
+									<a href="__MODULE__/collect/delStow/id/{$vo.co_id}" class="btn btn-success btn-xs" onclick="return checkDel()"> 删除</a>
+
+									
+
+								</td>
+
+							</tr>
+
+						{/volist}
+
+					</table>
+
+					{$list->render()}
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+		
+
+	</div>
+
+	<script type="text/javascript">
+
+		function checkVali(){
+
+			if(document.form1.telphone.value==''){
+
+				alert("联系方式不能为空");
+
+				document.form1.telphone.focus();
+
+				return false;
+
+			}
+
+			if(document.form1.linkman.value==''){
+
+				alert("客户名称不能为空");
+
+				document.form1.linkman.focus();
+
+				return false;
+
+			}
+
+			if(document.form1.notes.value==''){
+
+				alert("沟通情况不能为空");
+
+				document.form1.notes.focus();
+
+				return false;
+
+			}
+
+		}
+
+		//分页显示按钮组
+
+		$(".uppage").click(function(){
+
+			var but_val=$(this).html();
+
+			$.ajax({
+
+				url:"{:url('collect/stow')}",
+
+				type:'post',
+
+				data:{page:but_val},
+
+				async:true,
+
+				success:function(data){
+
+					if(data){
+
+						location.reload();
+
+					}
+
+				}
+
+			})
+
+		})
+
+		
+
+		//确认删除
+
+		function checkDel(){
+
+			var message=confirm("确认要删除这条数据？");
+
+			if(message==true){
+
+				return true;
+
+			}else {
+
+				return false;
+
+			}
+
+		}
+
+	</script>
+
+						
+
+</body>
+
+</html>

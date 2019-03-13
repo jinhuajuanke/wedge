@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>添加系统用户</title>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
+
+
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<!-- 头部 -->
+
+		{include file="public/head"/}
+
+		
+
+		<!-- 头部END -->
+
+		<div class="row">
+
+			<div class="col-md-2">
+
+				{include file="public:menu"/}		
+
+			</div>
+
+			<div class="col-md-10">
+
+
+
+				<div class="page-header">
+
+					<div class="row">
+
+						<div class="col-md-3">
+
+							<h3>账户管理 <small>>>添加管理员</small>
+
+							</h3>
+
+							
+
+						</div>
+
+						<div class="col-md-6"></div>
+
+						<div class="col-md-3">
+
+							<h4>
+
+
+
+								<a class="btn btn-info" href="__MODULE__/admin/index">账户管理</a>
+
+							</h4>
+
+						</div>
+
+					</div>
+
+					
+
+				</div>
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-3"></div>
+
+						<div class="col-md-6">
+
+							<form action="__MODULE__/admin/insert" method="post">
+
+								
+
+								<div class="form-group">
+
+									<label>登录账号</label>
+
+									<input type="text" name="username" class="form-control" placeholder="长度为>4个字符<20个,字母和数字，_及-">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>密码</label>
+
+									<input type="password" name="pwd" class="form-control" placeholder="密码长度为大于4个字符小于20个">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>确认密码</label>
+
+									<input type="password" name="repwd" class="form-control">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>姓名</label>
+
+									<input type="text" name="nickname" class="form-control" placeholder="姓名只能填写汉字或字母">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>手机号</label>
+
+									<input type="tel" name="telphone" class="form-control">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>邮箱</label>
+
+									<input type="email" name="email" class="form-control">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>角色</label>
+
+									<select class="form-control" name="group_id">
+
+										<option value="">--请选择--</option>
+
+										{volist name="list" id="vo"}
+
+										<option value="{$vo.id}">{$vo.groupname}</option>
+
+										{/volist}
+
+										
+
+									</select>
+
+								</div>
+
+								<div class="form-group">
+
+									<label>所属团队<small class="badge">创建员工账号必填，反之留空！</small></label>
+
+									<select class="form-control" name="p_id">
+										<option value="0">--请选择--</option>
+										{volist name="team" id="vo"}
+										<option value="{$vo.id}">{$vo.nickname}</option>
+										{/volist}
+									</select>
+
+								</div>
+
+								
+
+								<button  class="btn btn-info" type="submit">提交</button>
+
+							</form>
+
+						</div>
+
+						<div class="col-md-3"></div>
+
+					</div>
+
+					
+
+				</div>
+
+				
+
+			</div>
+
+		</div>
+
+
+
+		
+
+	</div>
+
+	
+
+</body>
+
+</html>

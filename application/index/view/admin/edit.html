@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>修改账户</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		{include file="public/head"/}
+		<!-- 头部END -->
+
+		<div class="row">
+			<div class="col-md-2">
+				{include file="public:menu"/}
+			</div>
+			<div class="col-md-10">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-2">
+							<h3>账户管理<small>>>修改账户</small></h3>	
+
+						</div>
+						<div class="col-md-7"></div>
+						<div class="col-md-3">
+							<h4>
+								<a class="btn btn-info" href="__MODULE__/admin/index">账户管理</a>
+							</h4>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<form action="__MODULE__/admin/update" method="post" class="form-horizontal">
+
+								<div class="form-group">
+									<label>登录账号</label>
+									<input type="text" name="username" class="form-control" value="{$list.username}">
+								</div>								
+
+								<div class="form-group">
+									<label>重置密码</label>
+
+									<input type="text" name="pwd" class="form-control" value="">
+
+								</div>
+								<div class="form-group">
+									<label>姓名</label>
+
+									<input type="text" name="nickname" class="form-control" value="{$list.nickname}">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>手机号</label>
+
+									<input type="tel" name="telphone" class="form-control" value="{$list.telphone}">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>邮箱</label>
+
+									<input type="email" name="email" class="form-control" value="{$list.email}">
+
+								</div>
+
+								<div class="form-group">
+
+									<label>角色</label>
+
+									<select class="form-control" name="group_id">
+
+										<option value="">--请选择--</option>
+
+										{volist name="grouplist" id="vo"}
+
+										<option value="{$vo.id}" {if condition="$vo.id eq $list.group_id"}selected{/if}>{$vo.groupname}</option>
+
+										{/volist}
+
+										
+
+									</select>
+
+								</div>
+
+								<div class="form-group">
+
+									<label>所属团队<span class="badge">创建员工账号必填，反之留空！</span></label>
+
+									<select class="form-control" name="p_id">
+
+										<option value="">--请选择--</option>
+
+										{volist name="team" id="vo"}
+
+										<option value="{$vo.id}" {if condition="$vo.id eq $list.p_id"}selected{/if}>{$vo.nickname}</option>
+
+										{/volist}
+
+										
+
+									</select>
+
+								</div>
+
+								<div class="form-group">
+
+									<label>账号状态</label>
+
+									<div class="checkbox">
+
+
+
+									<label>
+
+										<input type="radio" name="condition" value="1" {if condition="$list.condition eq 1"}checked{/if}>正常
+
+										<input type="radio" name="condition" value="0" {if condition="$list.condition eq 0"}checked{/if}>禁用
+
+									</label>
+
+								</div>
+
+								</div>
+
+								
+
+								<input type="hidden" name="id" value="{$list.id}">
+
+								<button class="btn btn-info" type="submit">提交</button>
+
+							</form>
+
+						</div>
+
+						<div class="col-md-3"></div>
+
+					</div>
+
+					
+
+				</div>
+
+				
+
+			</div>
+
+		</div>
+
+
+
+		
+
+	</div>
+
+</body>
+
+</html>
