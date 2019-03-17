@@ -782,65 +782,40 @@ class Collect extends Allow{
     //从我的客户页面删除单个数据
 
     public function delStow(){
-
-
-
         //接收数据
-
         $request=Request::instance();
-
         $data=$request->only('id');
 
         if(is_numeric($data['id'])){
 
              //通过collect_stow表中的id获取company中的aid
-
             $db_stow=Db::name("collect_stow")->field('aid')->find($data['id']);
 
             //删除收藏表的数据
-
             $data_del=Db::name("collect_stow")->delete($data['id']);
 
             if($data_del){
 
                 //还要更新company表中的数据MID、stowtype、notes，
-
                 Db::name("company")->where('id',$db_stow['aid'])->update(['mid'=>0,'stowtype'=>0]);
 
                 //信息统计各个字段数量减1
-
                 $db_stat=db("stat")->where("mid",session("userid"))->find();
 
                 if($db_stat['stat_note']!=0){
-
                     Db::name("stat")->where('mid',session('userid'))->setDec('stat_note',1);
-
-
-
                 }
 
                 if($db_stat['stat_stow']!=0){
-
                     Db::name("stat")->where('mid',session('userid'))->setDec('stat_stow',1);
-
-
-
                 }
 
                 if($db_stat['stat_class']!=0){
-
                     Db::name("stat")->where('mid',session('userid'))->setDec('stat_class',1);
-
-
-
                 }
 
                 if($db_stat['stat_b2']!=0){
-
                     Db::name("stat")->where('mid',session('userid'))->setDec('stat_b2',1);
-
-
-
                 }
 
                 $this->success("成功删除收藏数据！","collect/stow");
@@ -972,56 +947,69 @@ class Collect extends Allow{
     public function insertData(){
 
         $request=Request::instance();
-
         $data=$request->param();//获取请求的所有参数
 
 
-
         $data['mid']=session('userid');
-
         $db=Db::name("company")->insert($data);//执行添加到company表
 
-
-
         if($db){
-
             //$map是查询条件，查询刚才插入到company表中的ID
-
             $map['company_name']=$data['company_name'];
-
             $map['mid']=$data['mid'];
-
             $map['linkman']=$data['linkman'];
 
 
-
             $db_id=Db::name("company")->where($map)->find();
-
             $company_id=$db_id['id'];//获取刚刚插入的ID
 
             //获取ID后插入到collect_stow表
-
             $db_in=Db::name("collect_stow")->insert(['mid'=>$data['mid'],'stowtypeid'=>$data['stowtype'], 'aid'=>$company_id,'add_time'=>time(),'bd_time'=>time(),'source'=>'录单']);
 
             if($db_in){
-
                 $this->redirect("collect/stow");
-
-
-
             }else {
-
                 $this->error("添加失败！");
-
             }
-
         }else {
-
             $this->error("添加失败！");
-
         }
 
     }
+    //
+    public function editcom(){
+        //接收GET过来的数据
+        $request=Request::instance();
+        $param=$request->param();
 
+        $db=db("company")->where('id',$param['aid'])->find();
+
+        //获取分类数据
+        $data_stow=Db::name("collect_stowtype")->order('type_name asc')->select();
+        $this->assign("datastow",$data_stow);//搜索条件中下拉菜单
+        $this->assign("param",$param);//分配变量：接收GET过来的变量
+        $this->assign("db",$db);
+        return view();
+    }
+    public function updatecom(){
+        //接收POST提交的数据
+        $request=Request::instance();
+        $param=$request->param();
+        $db=db("company")->update([
+            'company_name'=>$param['company_name'],
+            'linkman'=>$param['linkman'],
+            'telphone'=>$param['telphone'],
+            'qq'=>$param['qq'],
+            'address'=>$param['address'],
+            'barrier'=>$param['barrier'],
+            'stowtype'=>$param['stowtype'],
+            'id'=>$param['id']
+        ]);
+        if($db){
+            $this->success("修改成功","collect/stow");
+        }else {
+            $this->error("修改失败");
+        }
+    }
 }
 

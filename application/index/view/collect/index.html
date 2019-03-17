@@ -1,57 +1,30 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
 	<title>数据列表--{$Think.config.sys_webname}</title>
-
 	<meta charset="utf-8">
-
 	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
-
 	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
-
 	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/collect.css">
-
 	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css">
 
-
-
 	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
-
 	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
-
 	<script type="text/javascript">
-
 		//全选
-
 		function selAll()
-
 		{
-
 			for(i=0;i<document.formsel.arcID.length;i++)
-
 			{
-
 				if(!document.formsel.arcID[i].checked)
-
 				{
-
 					document.formsel.arcID[i].checked=true;
-
 				}
-
 			}
-
 		}
-
 		//取消全选
-
 		function noSelAll()
-
 		{
-
 			for(i=0;i<document.formsel.arcID.length;i++)
 
 			{
@@ -71,41 +44,23 @@
 		//删除多条数据
 
 		function delArc(aid){
-
 			var que=confirm("确认要删除这些文件吗？");
-
 			if(que==true){
-
 				var qstr=getCheckboxItem();
-
 				if(qstr==''){
-
 					alert("至少选择一个以上的数据");
-
 					return;
-
 				}
-
 				if(aid==0) aid = getOneItem();
-
-			
-
 				location="__MODULE__/collect/delcompany_do/qstr/"+qstr;
-
-			}
-
-			
+			}	
 
 		}
 
 		//多条数据放入收藏
-
 		function addArc(aid){
-
 			var que=confirm("确认要放入客户公海吗？");
-
 			if(que==true){
-
 				var qstr=getCheckboxItem();
 
 				if(qstr==''){
@@ -117,23 +72,13 @@
 				}
 
 				if(aid==0) aid = getOneItem();
-
-			
-
 				location="__MODULE__/collect/putInDo/qstr/"+qstr;
-
 			}
-
-			
-
 		}
 
 		//获取ID函数
-
 		function getCheckboxItem()
-
 		{
-
 			var allSel="";
 
 			if(document.formsel.arcID.value) return document.formsel.arcID.value;
@@ -162,14 +107,9 @@
 
 		}
 
-
-
 		//获取ID函数
-
 		function getOneItem()
-
 		{
-
 			var allSel="";
 
 			if(document.formsel.arcID.value) return document.formsel.arcID.value;
@@ -194,250 +134,117 @@
 
 		}
 
-		
-
 	</script>
-
 </head>
-
 <body>
-
 	<div class="container-fluid">
 
 		<!-- 头部 -->
-
 		{include file="public/head"/}
-
 		<!-- 头部END -->
 
 		<div class="row">
-
 			<div class="col-md-2">
-
 				{include file="public/menu"/}
-
 			</div>
-
 			<div class="col-md-10">
 
 				<div class="page-header">
 
 					<div class="row">
-
 						<div class="col-md-2">
-
 							<h4>数据列表<small>>>主页</small></h4>
-
-							
-
 						</div>
-
 						<div class="col-md-7"></div>
-
-						<div class="col-md-3">
-
-							<h4>
-
-
-
-							</h4>
-
-						</div>
-
+						<div class="col-md-3"><h4></h4></div>
 					</div>
-
-					
-
 				</div>
-
 				<div class="container-fluid">
-
 					<div class="alert alert-success">
-
 						<div class="row">
-
-							<div class="col-md-3">
-
-								<form action="__MODULE__/collect/index" method="post" class="form-inline">
-
-									<div class="form-group">
-
-										<label>公司名称</label>
-
-										<input type="text" name="keyword" class="form-control" value="{$keyword}" placeholder="比如：医疗">
-
-									</div>
-
-									<button type="submit" class="btn btn-sm btn-info">搜索</button>
-
-								</form>
-
-							</div>
-
 							<div class="col-md-4">
-
+								<form action="__MODULE__/collect/index" method="post" class="form-inline">
+									<div class="form-group">
+										<label>公司名称</label>
+										<input type="text" name="keyword" class="form-control" value="{$keyword}" placeholder="比如：医疗">
+									</div>
+									<button type="submit" class="btn btn-sm btn-info">搜索</button>
+								</form>
+							</div>
+							<div class="col-md-4">
 								<div class="btn-group">
-
-									
-
-									<button class="btn btn-default ">修改每页显示条数</button>
-
-
-
-										<button class="btn btn-default uppage {$btn1}">10</button>
-
-										<button class="btn btn-default uppage {$btn2}">20</button>
-
-										<button class="btn btn-default uppage {$btn3}">30</button>
-
-										<button class="btn btn-default uppage {$btn5}">50</button>
-
-										<button class="btn btn-default uppage {$btn10}">100</button>
-
-									
-
-									
-
+									<button class="btn btn-default ">每页显示条数</button>
+									<button class="btn btn-default uppage {$btn1}">10</button>
+									<button class="btn btn-default uppage {$btn2}">20</button>
+									<button class="btn btn-default uppage {$btn3}">30</button>
+									<button class="btn btn-default uppage {$btn5}">50</button>
+									<button class="btn btn-default uppage {$btn10}">100</button>
 								</div>
-
 							</div>
-
-							<div class="col-md-5">
-
+							<div class="col-md-4">
 								<div class="row">
-
 									<div class="col-md-4">
+										<button {if condition="$Think.session.userid neq 1"}style="display:none;"{/if} type="button" class="btn btn-primary btn-2x" data-toggle="modal" data-target="#myModal">Excel导出</button>
+										<!-- Modal -->
+										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h4 class="modal-title" id="myModalLabel">Excel表格导出</h4>
+										      </div>
+										      <div class="modal-body">
+										        <form action="__MODULE__/excel/export" enctype="multipart/form-data" method="post">
+											      	<div class="form-group">
+											      		<label>关键词</label>
+												    	<input type="text" name="keyword" class="form-control" placeholder="关键词">
+											      	</div>
+											      	<div class="form-group">
+											      		<label>导出数量</label>
+											      		<input type="number" name="limit" class="form-control" placeholder="为空则导出所有">
+											      	</div>
+											      	<div class="form-group">
+											      		<label>排序:</label>						      		
 
-										<button {if condition="$Think.session.userid neq 1"}style="display:none;"{/if} type="button" class="btn btn-primary btn-2x" data-toggle="modal" data-target="#myModal">Excel表格导出</button>
-
-
-
-								<!-- Modal -->
-
-								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-								  <div class="modal-dialog" role="document">
-
-								    <div class="modal-content">
-
-								      <div class="modal-header">
-
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-								        <h4 class="modal-title" id="myModalLabel">Excel表格导出</h4>
-
-								      </div>
-
-								      <div class="modal-body">
-
-								        <form action="__MODULE__/excel/export" enctype="multipart/form-data" method="post">
-
-									      	<div class="form-group">
-
-									      		<label>关键词</label>
-
-										    	<input type="text" name="keyword" class="form-control" placeholder="关键词">
-
-									      	</div>
-
-									      	<div class="form-group">
-
-									      		<label>导出数量</label>
-
-									      		<input type="number" name="limit" class="form-control" placeholder="为空则导出所有">
-
-									      	</div>
-
-									      	<div class="form-group">
-
-									      		<label>排序:</label>
-
-									      		
-
-									      			<label>	<input type="radio" name="order" checked  value="id desc">	倒序   			</label>
-
-									      			<label><input type="radio" name="order"  value="id asc">
-
-									      				正序</label>
-
-									      	</div>
-
-								      
-
-									    	<input type="submit" class="btn btn-danger" value="Excel表格导出">
-
-									 	</form>
-
-								      </div>
-
-								      <div class="modal-footer">
-
-								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-								      </div>
-
-								    </div>
-
-								  </div>
-
-								</div>
-
-										
-
+											      			<label>	<input type="radio" name="order" checked  value="id desc">	倒序   			</label>
+											      			<label><input type="radio" name="order"  value="id asc">
+											      				正序</label>
+											      	</div>
+						    				    	<input type="submit" class="btn btn-danger" value="Excel表格导出">
+											 	</form>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
 									</div>
-
 									<div class="col-md-8">
-
 										<table class="" {if condition="$Think.session.userid neq 1"}style="display:none;"{/if}>
-
 										<form method="post" action="{:url('excel/import')}" class="form-inline" enctype="multipart/form-data" >
-
 											<tr>
-
 												<td>
-
-											    	<input type="file" name="excel" >
-
+											    	<input type="file" name="excel" style="width: 170px;">
 												</td>
-
 												<td>
-
 										    		<button type="submit" class="btn btn-sm btn-primary " >导入</button>
-
 												</td>
-
 											</tr>
-
 										</form>
-
 										</table>
-
-											
-
 									</div>
-
 								</div>
-
 							</div>
-
 						</div>
-
 					</div>
-
 					<form name="formsel">
-
 					<table class="table  table-responsive table-hover">
-
 						<tr class="info">
-
 							<td colspan="8">
-
 								数据总条数：<span>{$num_total}</span>
-
 							</td>
-
 						</tr>
-
 						<tr class="danger">
 
 							<th>选择</th>
