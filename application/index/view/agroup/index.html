@@ -1,71 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>用户组管理</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
-	<link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
-	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
-	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<!-- 头部 -->
-		{include file="public/head"/}
-		<!-- 头部END -->
-		<div class="row">
-			<div class="col-md-2">
-				{include file="public:menu"/}		
-			</div>
-			<div class="col-md-10">
-
-				
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-2">
-							<h4>用户组管理<small>>>详情页</small></h4>
-							
-							
-						</div>
-						<div class="col-md-7"></div>
-						<div class="col-md-3">
-							<h4>
-								<a class="btn btn-info" href="__MODULE__/agroup/add">添加用户组</a>
-
-								<a class="btn btn-info" href="__MODULE__/admin/index">系统用户管理</a>
-							</h4>
-						</div>
-					</div>
-					
-				</div>
-				<div class="container">
-					<table class="table table-bordered table-striped">
-						<tr>
-							<th>编号</th>
-							<th>组名称</th>
-							<th>说明</th>
-							<th>操作</th>
-						</tr>
-						{volist name='data' id='vo'}
-						<tr>
-							<td>{$vo.id}</td>
-							<td>{$vo.groupname}</td>
-							<td>{$vo.notes}</td>
-							<td>
-								<a class="btn btn-info btn-sm " href="__MODULE__/agroup/del/id/{$vo.id}">删除</a>
-								<a class="btn btn-info btn-sm" href="__MODULE__/agroup/edit/id/{$vo.id}">修改</a>
-								<a class="btn btn-info btn-sm" href="__MODULE__/agroup/permission/id/{$vo.id}">权限设置</a>
-							</td>
-						</tr>
-						{/volist}
-					</table>
-				</div>
-				
-			</div>
-		</div>
-
-		
-	</div>
-</body>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>用户组管理</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		{include file="public/head"/}
+		<!-- 头部END -->
+		<div class="row">
+			<div class="col-md-2">
+				{include file="public:menu"/}		
+			</div>
+			<div class="col-md-10">
+
+				
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-2">
+							<h4>用户组管理<small>>>详情页</small></h4>
+							
+							
+						</div>
+						<div class="col-md-7"></div>
+						<div class="col-md-3">
+							<h4>
+								<a class="btn btn-info" href="__MODULE__/agroup/add">添加用户组</a>
+
+								<a class="btn btn-info" href="__MODULE__/admin/index">系统用户管理</a>
+							</h4>
+						</div>
+					</div>
+					
+				</div>
+				<div class="container">
+					<table class="table table-bordered table-striped">
+						<tr>
+							<th>编号</th>
+							<th>组名称</th>
+							<th>说明</th>
+							<th>操作</th>
+						</tr>
+						{volist name='data' id='vo'}
+						<tr>
+							<td>{$vo.id}</td>
+							<td>{$vo.groupname}</td>
+							<td>{$vo.notes}</td>
+							<td>
+								<a class="btn btn-info btn-sm " href="__MODULE__/agroup/del/id/{$vo.id}">删除</a>
+								<a class="btn btn-info btn-sm" href="__MODULE__/agroup/edit/id/{$vo.id}">修改</a>
+								<a class="btn btn-info btn-sm" href="__MODULE__/agroup/permission/id/{$vo.id}">权限设置</a>
+							</td>
+						</tr>
+						{/volist}
+					</table>
+				</div>
+				
+			</div>
+		</div>
+
+		
+	</div>
+</body>
 </html>

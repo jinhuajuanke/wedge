@@ -13,15 +13,21 @@
 */
 
 namespace app\index\controller;
+
 use think\Controller;
+
 use think\Request;
+
 use think\Validate;
-use think\Cache;
 
 header("Content-type:text/html;charset=utf-8");
+
 class Admin extends Allow{
 
+	
+
     public function index(){
+        
         $nickname=input('nickname');
         $group_id=input('group_id');
         $where=array();
@@ -53,10 +59,9 @@ class Admin extends Allow{
         }
     	//分配变量
     	$this->assign("data",$data);
-      
+        
             $db=db("admingroup")->field("id,groupname")->order('id asc')->select();
            
-        
         $this->assign("list",$db);//分配成员组变量做搜索下拉菜单
 
         $this->assign("nickname",$nickname);//用于显示搜索
@@ -71,25 +76,19 @@ class Admin extends Allow{
     public function add(){
 
         //获取分组的数据做下拉菜单
-
         $db=db("admingroup")->field('id,groupname')->order('id asc')->select();
 
-        //分配变量
-
+        //分配用户组数据变量
         $this->assign("list",$db);
-
-
-
-        //获取所属团队的数据做下拉菜单
-
-        $db_dui=db("admin")->where('group_id',2)->field('id,nickname')->order('id asc')->select();
-
+        //缓存
+        
+            //获取所属团队的数据做下拉菜单
+            $db_dui=db("admin")->where('group_id',2)->field('id,nickname')->order('id asc')->select();
+           
         //分配变量
-
         $this->assign("team",$db_dui);
 
     	return view();
-
     }
 
     //执行添加账户
@@ -99,10 +98,15 @@ class Admin extends Allow{
     	//获取数据
     	$result=Request::instance();
     	$datas=$result->param();
+
     	if($datas['pwd']!=$datas['repwd']){
             $this->error("两次密码不正确");
         }
-    	$db_username=db("admin")->field('username')->where('username',$datas['username'])->find();
+        //缓存
+        
+            $db_username=db("admin")->field('username')->where('username',$datas['username'])->find();
+           
+       
         if($db_username){
             $this->error("账号重复，请更换一个账号名称！");
         }
@@ -142,6 +146,7 @@ class Admin extends Allow{
     	//插入数据
     	$data_in=db("admin")->insert($data);
     	if($data_in){
+           
             db("stat")->insert(['stat_stow'=>0,'stat_class'=>0,'stat_note'=>0]);
     		$this->success("成功创建账户","admin/index");
     	} else {
@@ -159,9 +164,11 @@ class Admin extends Allow{
         //分配变量
         $this->assign("grouplist",$db);
         
-
-         //获取所属团队的数据做下拉菜单
-        $db_dui=db("admin")->where('group_id',2)->field('id,nickname')->order('id asc')->select();
+        
+            //获取所属团队的数据做下拉菜单
+            $db_dui=db("admin")->where('group_id',2)->field('id,nickname')->order('id asc')->select();
+           
+        
         //分配变量
         $this->assign("team",$db_dui);
 
@@ -221,9 +228,11 @@ class Admin extends Allow{
     	if(!$val_result){
     		$this->error($validate->getError());
     	}
-
-        //获取当前ID账户的密码并且和输入的密码作判断
-        $db_id=db("admin")->field('pwd')->find($id);
+       
+            //获取当前ID账户的密码并且和输入的密码作判断
+            $db_id=db("admin")->field('pwd')->find($id);
+           
+        
 
         if($datas['pwd']==''){
             $data['pwd']=$db_id['pwd'];
@@ -236,53 +245,48 @@ class Admin extends Allow{
        
 
     	//更新数据
-
     	$data_up=db("admin")->where('id',$id)->update($data);
     	if($data_up){
+           
     		$this->success("成功修改管理员","admin/index");
+
     	} else {
+
     		$this->error("修改管理员失败");
+
     	}
+
     }
 
     //执行删除账户
+
     public function del(){
 
         $id=input('id');
-
         //删除账户也必须删除collet_stow收藏表、stat表、collect_stowtype表中的MID数据及更新company表中的mid,stowtype
-
-        $db_cs=db("collect_stow")->where('mid',$id)->find();
+       
+            $db_cs=db("collect_stow")->where('mid',$id)->find();
+           
 
         if(!empty($db_cs)){
-
             db("collect_stow")->where("mid",$id)->delete();
-
         }
-
-
 
         $db_cst=db("collect_stowtype")->where('mid',$id)->find();
 
         if(!empty($db_cst)){
-
             db("collect_stow")->where("mid",$id)->delete();
-
         }
 
-
-
         $db_cst=db("company")->where('mid',$id)->find();
-
         if(!empty($db_cst)){
             db("company")->where('mid',$id)->update(['mid'=>0,'stowtype'=>0]);
         }
-
        
 
         $db_ad=db("admin")->where('id',$id)->delete();
         if($db_ad){           
-
+           
             $this->success("删除成功！","admin/index");
 
         }else {

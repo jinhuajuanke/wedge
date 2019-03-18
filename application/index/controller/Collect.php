@@ -976,7 +976,7 @@ class Collect extends Allow{
         }
 
     }
-    //
+    //我的客户页面，点击修改进入的修改页面
     public function editcom(){
         //接收GET过来的数据
         $request=Request::instance();
@@ -991,6 +991,7 @@ class Collect extends Allow{
         $this->assign("db",$db);
         return view();
     }
+    //执行修改
     public function updatecom(){
         //接收POST提交的数据
         $request=Request::instance();
@@ -1011,5 +1012,6 @@ class Collect extends Allow{
             $this->error("修改失败");
         }
     }
+
 }
 

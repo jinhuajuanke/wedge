@@ -1,138 +1,138 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>员工数据概况</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/staff.css">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
-
-	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
-	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<!-- 头部 -->
-		{include file="public/head"/}
-		
-		<!-- 头部END -->
-		<div class="row">
-			<div class="col-md-2">
-				{include file="public/menu"/}
-			</div>
-			<div class="col-md-10">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-2">
-							<h4>员工概况<small>>>主页</small></h4>
-						</div>
-					</div>
-				</div>
-				<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-8" style="border-right: 1px solid blue;">
-							<h3>概况</h3>
-
-								<div class="row">
-									<div class="col-md-6">
-										<table class="table table-striped">
-											<tr>
-												<th colspan="3" class="info">员工账号信息</th>
-											</tr>
-											<tr>
-												<td>总数量</td>
-												<td>有效数量</td>
-												<td>禁用数量</td>
-											</tr>
-											<tr>
-												<td>{$c_tota_num}</td>
-												<td>{$c_one_num}</td>
-												<td>{$c_zero_num}</td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-md-6">
-										<table class="table table-striped">
-											<tr>
-												<th colspan="3" class="info">客户数据概况</th>
-											</tr>
-											<tr>
-												<td>总数量</td>
-												<td>已使用</td>
-												<td>未使用</td>
-											</tr>
-											<tr>
-												<td>{$c_num_tota}</td>
-												<td>{$c_num_totao}</td>
-												<td>{$c_num_totaz}</td>
-											</tr>
-										</table>
-									</div>
-								</div>
-								<h3>BD状态</h3>
-								<div class="row staff_info" >
-									<div class="col-md-6">
-										<table class="table table-striped">
-											<tr>
-												<th colspan="3" class="info">BD状态</th>
-											</tr>
-											<tr>
-												<td>总数量</td>
-												<td>B<sub>2</sub></td>
-												<td>P<sub>1</sub></td>
-											</tr>
-											<tr>
-												<td>{$bd.total}</td>
-												<td>{$bd.btwo}</td>
-												<td>{$bd.pone}</td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-md-6">
-										
-									</div>
-									
-								</div>
-								
-							
-							</div>
-
-							<div class="col-md-4">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										常用操作
-									</div>
-									<div class="panel-body">
-										<div class="btn-group btn-group-justified">
-											<div class="btn-group">
-												<a class="btn btn-default" href="__MODULE__/staff/showInfos">查看员工任务</a>
-											</div>
-											<div class="btn-group">
-												<a class="btn btn-default" disabled href="">查看员工信息</a>
-												
-											</div>
-										</div>
-										<br>
-										<div class="btn-group btn-group-justified">
-											<div class="btn-group">
-												<a class="btn btn-default" href="__MODULE__/admin/add">添加新账户</a>
-												
-											</div>
-											<div class="btn-group">
-												<a class="btn btn-default" href="__MODULE__/admin/index">账户管理</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	
-						
-</body>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>员工数据概况</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/staff.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		{include file="public/head"/}
+		
+		<!-- 头部END -->
+		<div class="row">
+			<div class="col-md-2">
+				{include file="public/menu"/}
+			</div>
+			<div class="col-md-10">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-2">
+							<h4>员工概况<small>>>主页</small></h4>
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-8" style="border-right: 1px solid blue;">
+							<h3>概况</h3>
+
+								<div class="row">
+									<div class="col-md-6">
+										<table class="table table-striped">
+											<tr>
+												<th colspan="3" class="info">员工账号信息</th>
+											</tr>
+											<tr>
+												<td>总数量</td>
+												<td>有效数量</td>
+												<td>禁用数量</td>
+											</tr>
+											<tr>
+												<td>{$c_tota_num}</td>
+												<td>{$c_one_num}</td>
+												<td>{$c_zero_num}</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-md-6">
+										<table class="table table-striped">
+											<tr>
+												<th colspan="3" class="info">客户数据概况</th>
+											</tr>
+											<tr>
+												<td>总数量</td>
+												<td>已使用</td>
+												<td>未使用</td>
+											</tr>
+											<tr>
+												<td>{$c_num_tota}</td>
+												<td>{$c_num_totao}</td>
+												<td>{$c_num_totaz}</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<h3>BD状态</h3>
+								<div class="row staff_info" >
+									<div class="col-md-6">
+										<table class="table table-striped">
+											<tr>
+												<th colspan="3" class="info">BD状态</th>
+											</tr>
+											<tr>
+												<td>总数量</td>
+												<td>B<sub>2</sub></td>
+												<td>P<sub>1</sub></td>
+											</tr>
+											<tr>
+												<td>{$bd.total}</td>
+												<td>{$bd.btwo}</td>
+												<td>{$bd.pone}</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-md-6">
+										
+									</div>
+									
+								</div>
+								
+							
+							</div>
+
+							<div class="col-md-4">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										常用操作
+									</div>
+									<div class="panel-body">
+										<div class="btn-group btn-group-justified">
+											<div class="btn-group">
+												<a class="btn btn-default" href="__MODULE__/staff/showInfos">查看员工任务</a>
+											</div>
+											<div class="btn-group">
+												<a class="btn btn-default" disabled href="">查看员工信息</a>
+												
+											</div>
+										</div>
+										<br>
+										<div class="btn-group btn-group-justified">
+											<div class="btn-group">
+												<a class="btn btn-default" href="__MODULE__/admin/add">添加新账户</a>
+												
+											</div>
+											<div class="btn-group">
+												<a class="btn btn-default" href="__MODULE__/admin/index">账户管理</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+						
+</body>
 </html>

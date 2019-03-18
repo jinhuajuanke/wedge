@@ -1,157 +1,248 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>后台管理--{$Think.config.sys_webname}</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/persetting.css">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
-
-	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
-	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<!-- 头部 -->
-		{include file="public/head"/}
-		<!-- 头部END -->
-		<div class="row">
-			<div class="col-md-2">
-				{include file="public/menu"/}
-			</div>
-			<div class="col-md-10">
-				<div class="page-header">
-					<h3>个人设置 <small>>>修改信息</small></h3>
-				</div>
-				<div class="container">
-					<div class="row">
-						<form action="__MODULE__/persetting/update" method="post" enctype="multipart/form-data">
-						<table class="table table-bordered table-striped">
-							<tr class="tr_width">
-								<td>用户名</td>
-								<td><input type="text" name="username" class="form-control" value="{$data['username']}"></td>
-								<td>昵称</td>
-								<td><input type="text" name="nickname" class="form-control" value="{$data.nickname}"></td>
-								<td rowspan="3">
-									<div class="panel panel-default">
-										<div class="panel-body">
-											{if condition="$data.face eq ''"}
-												<img class="img-thumbnail img-responsive" src="__STATIC__/admin/image/face.jpg" >
-											{else}
-												<img class="img-thumbnail img-responsive" src="__STATIC__/admin/userup/{$Think.session.userid}/{$data.face}" id="nlitpic">
-											{/if}
-											
-										</div>
-									</div>
-									<input type="hidden" name="oldface" value="{$data.face}">
-									<input id="lefile"  onchange="LitPic(this)"  type="file" name="face" style="display:none">
-									<div class="input-group">
-										<input id="photoCover" class="form-control" type="text" style="height:30px;">
-										<a class="btn btn-success input-group-addon" onclick="$('input[id=lefile]').click();">上传</a>
-									</div>
-									 
-									<script type="text/javascript">
-										$('input[id=lefile]').change(function() {
-										$('#photoCover').val($(this).val());
-										});
-									         
-								        //判断浏览器是否支持FileReader接口
-								        if (typeof FileReader == 'undefined') {
-								            document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
-								            //使选择控件不可操作
-								            document.getElementById("lefile").setAttribute("disabled", "disabled");
-								        }
-
-								        //选择图片，马上预览
-								        function LitPic(obj) {
-								            var file = obj.files[0];
-								            
-								            console.log(obj);console.log(file);
-								            console.log("file.size = " + file.size);  //file.size 单位为byte
-
-								            var reader = new FileReader();
-
-								            //读取文件过程方法
-								            reader.onloadstart = function (e) {
-								                console.log("开始读取....");
-								            }
-								            reader.onprogress = function (e) {
-								                console.log("正在读取中....");
-								            }
-								            reader.onabort = function (e) {
-								                console.log("中断读取....");
-								            }
-								            reader.onerror = function (e) {
-								                console.log("读取异常....");
-								            }
-								            reader.onload = function (e) {
-								                console.log("成功读取....");
-
-								                var img = document.getElementById("nlitpic");
-								                img.src = e.target.result;
-								            }
-
-								            reader.readAsDataURL(file)
-								        }
-    
-									</script>
-										
-									
-								</td>
-							</tr>
-							<tr>
-								<td>密码</td>
-								<td>
-								<input type="password" name="pwd" class="form-control" placeholder="不修改则留空">
-
-									
-								</td>
-								<td>确认密码</td>
-								<td>
-								<input type="password" name="repwd" class="form-control" placeholder="不修改则留空">
-
-
-								</td>
-								
-							</tr>
-							<tr>
-								<td>手机号</td>
-								<td>
-								<input type="text" name="telphone" class="form-control" value="{$data.telphone}">
-
-									
-								</td>
-								<td>邮箱</td>
-								<td>
-								<input type="text" name="email" class="form-control" value="{$data['email']}">
-
-
-								</td>
-								
-							</tr>
-							<tr>
-								<td >验证码</td>
-								<td>
-									<input type="text" name="code"  style="vertical-align: center;">
-								<img onclick="this.src='{:captcha_src()}?'+Math.random()" src="{:captcha_src()}" alt="captcha" style="vertical-align: center" />
-									
-								</td>
-								
-								<td colspan="3"><button class="btn btn-info">提交</button></td>
-								
-							</tr>
-						</table>
-					</form>
-						
-					</div>
-				</div>
-				
-			</div>
-
-		</div>
-	
-	</div>
-
-</body>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>后台管理--{$Think.config.sys_webname}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/persetting.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		{include file="public/head"/}
+		<!-- 头部END -->
+		<div class="row">
+
+			<div class="col-md-2">
+
+				{include file="public/menu"/}
+
+			</div>
+
+			<div class="col-md-10">
+
+				<div class="page-header">
+
+					<h3>个人设置 <small>>>修改信息</small></h3>
+
+				</div>
+
+				<div class="container">
+
+					<div class="row">
+
+						<form action="__MODULE__/persetting/update" method="post" enctype="multipart/form-data">
+
+						<table class="table table-bordered table-striped">
+
+							<tr class="tr_width">
+
+								<td>用户名</td>
+
+								<td><input type="text" name="username" class="form-control" value="{$data['username']}"></td>
+
+								<td>昵称</td>
+
+								<td><input type="text" name="nickname" class="form-control" value="{$data.nickname}"></td>
+
+								<td rowspan="3">
+
+									<div class="panel panel-default">
+
+										<div class="panel-body">
+
+											{if condition="$data.face eq ''"}
+
+												<img class="img-thumbnail img-responsive" src="__STATIC__/admin/image/face.jpg" >
+
+											{else}
+
+												<img class="img-thumbnail img-responsive" src="__STATIC__/admin/userup/{$Think.session.userid}/{$data.face}" id="nlitpic">
+
+											{/if}
+
+											
+
+										</div>
+
+									</div>
+
+									<input type="hidden" name="oldface" value="{$data.face}">
+
+									<input id="lefile"  onchange="LitPic(this)"  type="file" name="face" style="display:none">
+
+									<div class="input-group">
+
+										<input id="photoCover" class="form-control" type="text" style="height:30px;">
+
+										<a class="btn btn-success input-group-addon" onclick="$('input[id=lefile]').click();">上传</a>
+
+									</div>
+
+									 
+
+									<script type="text/javascript">
+
+										$('input[id=lefile]').change(function() {
+
+										$('#photoCover').val($(this).val());
+
+										});
+
+									         
+
+								        //判断浏览器是否支持FileReader接口
+
+								        if (typeof FileReader == 'undefined') {
+
+								            document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
+
+								            //使选择控件不可操作
+
+								            document.getElementById("lefile").setAttribute("disabled", "disabled");
+
+								        }
+
+
+
+								        //选择图片，马上预览
+
+								        function LitPic(obj) {
+
+								            var file = obj.files[0];
+
+								            
+
+								            console.log(obj);console.log(file);
+
+								            console.log("file.size = " + file.size);  //file.size 单位为byte
+
+
+
+								            var reader = new FileReader();
+
+
+
+								            //读取文件过程方法
+
+								            reader.onloadstart = function (e) {
+
+								                console.log("开始读取....");
+
+								            }
+
+								            reader.onprogress = function (e) {
+
+								                console.log("正在读取中....");
+
+								            }
+
+								            reader.onabort = function (e) {
+
+								                console.log("中断读取....");
+
+								            }
+
+								            reader.onerror = function (e) {
+
+								                console.log("读取异常....");
+
+								            }
+
+								            reader.onload = function (e) {
+
+								                console.log("成功读取....");
+
+
+
+								                var img = document.getElementById("nlitpic");
+
+								                img.src = e.target.result;
+
+								            }
+
+
+
+								            reader.readAsDataURL(file)
+
+								        }
+
+    
+
+									</script>
+								</td>
+							</tr>
+							<tr>
+								<td>密码</td>
+								<td>
+								<input type="password" name="pwd" class="form-control" placeholder="不修改则留空">
+
+								</td>
+								<td>确认密码</td>
+								<td>
+								<input type="password" name="repwd" class="form-control" placeholder="不修改则留空">
+								</td>
+							</tr>
+							<tr>
+
+								<td>手机号</td>
+
+								<td>
+
+								<input type="text" name="telphone" class="form-control" value="{$data.telphone}">
+								</td>
+
+								<td>邮箱</td>
+								<td>
+								<input type="text" name="email" class="form-control" value="{$data['email']}">
+
+								</td>
+
+							</tr>
+
+							<tr>
+
+								<td >验证码</td>
+
+								<td>
+
+									<input type="text" name="code"  style="vertical-align: center;">
+
+								<img onclick="this.src='{:captcha_src()}?'+Math.random()" src="{:captcha_src()}" alt="captcha" style="vertical-align: center" />
+
+								</td>
+
+								<td colspan="3"><button class="btn btn-info">提交修改</button></td>
+
+							</tr>
+
+						</table>
+
+					</form>
+
+					</div>
+
+				</div>
+			
+
+			</div>
+
+
+		</div>
+
+	
+
+	</div>
+
+
+
+</body>
+
 </html>

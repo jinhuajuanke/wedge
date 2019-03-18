@@ -7,7 +7,7 @@ use think\Request;
 class Staff extends Allow{	
 
     public function index(){
-
+      
     	$c_tota_num=model("Admin")->getUserConTota();//工作人员数量
     	$this->assign("c_tota_num",$c_tota_num);
 

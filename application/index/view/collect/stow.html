@@ -57,16 +57,29 @@
 										</select>
 									</div>
 									<div class="form-group">
+
 										<select name="source" class="form-control">
+
 											<option value="">--请选择来源--</option>
+
 											<option value="录单" {if condition="$source eq '录单'"}selected{/if}>录单</option>
-											<option value="客户公海" {if condition="$source eq '客户公海'"}selected{/if}>客户公海</option>									
-										</select>
-									</div>
-									<div class="form-group">
-										<select name="time" class="form-control">
-											<option value="">--请选择日期--</option>
+
+											<option value="客户公海" {if condition="$source eq '客户公海'"}selected{/if}>客户公海</option>
+
 											
+
+										</select>
+
+									</div>
+
+									<div class="form-group">
+
+										<select name="time" class="form-control">
+
+											<option value="">--请选择日期--</option>
+
+											
+
 											<option value="today" {if condition="$date eq 'today'"}selected{/if}>今天</option>
 
 											<option value="yesterday" {if condition="$date eq 'yesterday'"}selected{/if}>昨天</option>
@@ -175,6 +188,7 @@
 										</select>
 									</div>
 									<button class="btn btn-danger" type="submit">录单</button>
+
 								</form>
 							</td>					
 
@@ -192,13 +206,13 @@
 							<th>微信/QQ号</th>
 							<th>沟通情况</th>
 							<th>成交障碍</th>
-							<th>沟通情况</th>
+							<!-- <th>沟通情况</th> -->
 							<th>BD状态</th>
 							<th>来源</th>
 							<th>添加时间</th>
 							<th>操作</th>
 						</tr>
-
+						
 						{volist name="list" id="vo"}
 
 							<tr class="tr_width">
@@ -207,16 +221,18 @@
 								<td>{$vo.linkman}</td>
 								<td>{$vo.telphone}</td>
 								<td>{$vo.qq}</td>
-								<td>
-									{$vo.notes}
+								<td style="vertical-align: bottom;text-align: center;">
+									<p>{$vo.notes}</p>
+									
+									<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#mynotes{$vo.id}" >
+									  填沟通</sup>
+									</button>
 								</td>
 								<td>{$vo.barrier}</td>
-								<td>
+								
 									<!-- Button trigger modal -->
 
-									<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#mynotes{$vo.id}">
-									  填沟通<sup style="font-size: 14px;">{notempty name='$vo.notes' }☆{/notempty}</sup>
-									</button>
+									
 									
 
 									<!-- Modal -->
@@ -244,13 +260,13 @@
 
 													<button class="btn btn-sm">提交</button>
 
-													<!-- Button trigger modal -->
+													<!-- Button trigger modal
 
 													<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#notes">
 
 												  查看详情
 
-													</button>
+													</button> -->
 
 
 
@@ -302,18 +318,22 @@
 
 									</div>
 
-								</td>
+								
 
 								<td>
+
 									<span>{$vo.type_name}</span>
-								</td>
-								<td>{$vo.source}</td>
-								<td>{:date('Y-m-d H:i',$vo.add_time)}</td>
-								<td>
 
-									<a href="__MODULE__/collect/editcom/id/{$vo.co_id}/aid/{$vo.com_id}/typeid/{$vo.stowtype}" class="btn btn-success btn-xs"> 修改</a>
+								</td>
+
+								<td>{$vo.source}</td>
+
+								<td>{:date('Y-m-d H:i',$vo.add_time)}</td>
+
+								<td>
 
 									<a href="__MODULE__/collect/sowtype/id/{$vo.co_id}/aid/{$vo.com_id}/typeid/{$vo.stowtype}" class="btn btn-success btn-xs"> BD状态</a>
+									<a href="__MODULE__/collect/editcom/id/{$vo.co_id}/aid/{$vo.com_id}/typeid/{$vo.stowtype}" class="btn btn-success btn-xs"> 修改</a>
 
 									<a href="__MODULE__/collect/delStow/id/{$vo.co_id}" class="btn btn-success btn-xs" onclick="return checkDel()"> 删除</a>
 

@@ -1,115 +1,121 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>权限菜单管理</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
-	<link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	
-	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
-	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
-	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<!-- 头部 -->
-		<div class="row">
-			<div class="col-md-2 head_left">
-			<div class="">
-				<a class="btn btn-info btn-lg" href="__MODULE__/index/index">后台管理</a>
-			</div>
-			</div>
-			<div class="col-md-10 head_right">
-				<div class="row">
-					<div class="col-md-1">
-						
-					</div>
-					<div class="col-md-9">
-						
-					</div>
-					<div class="col-md-2">
-						<div class="dropdown">
-						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						  	<i class="fa fa-user fa-fw"></i>
-						    {$Think.session.username}
-						    <span class="caret"></span>
-						  </button>
-						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						    <li><a href="__MODULE__/persetting/index"><i class="fa fa-cog"></i>个人设置</a></li>
-						    <li><a href="#">Another action</a></li>
-						    <li><a href="#">Something else here</a></li>
-						    <li role="separator" class="divider"></li>
-						    <li><a href="__MODULE__/Login/logout"><i class="fa fa-power-off" aria-hidden="true"></i>退出</a></li>
-						  </ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 头部END -->
-		<div class="row">
-			<div class="col-md-2">
-				{include file="public:menu"/}		
-			</div>
-			<div class="col-md-10">
-
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-2">
-							<h4>权限菜单管理<small>>>主页</small></h4>
-							
-						</div>
-						<div class="col-md-7"></div>
-						<div class="col-md-3">
-							<h4>
-								<a class="btn btn-info" href="__MODULE__/permission/add">添加权限</a>
-
-							</h4>
-						</div>
-					</div>
-					
-				</div>
-				<div class="container-fluid">
-					<table class="table table-bordered">
-						<tr class="success">
-							<th>编号</th>
-							<th>名称</th>
-							<th>url</th>
-							<th>状态</th>
-							<th>操作</th>
-						</tr>
-						{volist name="list" id="vo"}
-							<tr>
-								<td>{$vo.id}</td>
-								<td>{$vo.per_name}</td>
-								<td>{$vo.controller}/{$vo.action}</td>
-								<td>{$vo.status}</td>
-								<td>
-									<a href="__MODULE__/permission/edit/id/{$vo.id}">修改</a>
-									<a href="__MODULE__/permission/del/id/{$vo.id}">删除</a>
-								</td>
-							</tr>
-							{volist name="vo.child" id="vi"}
-								<tr>
-									<td>{$vi.id}</td>
-									<td>\\\\\\\\\\\\\\{$vi.per_name}</td>
-									<td>{$vi.controller}/{$vi.action}</td>
-									<td>{$vi.status}</td>
-									<td>
-									<a href="__MODULE__/permission/edit/id/{$vi.id}">修改</a>
-									<a href="__MODULE__/permission/del/id/{$vi.id}">删除</a>
-									</td>
-								</tr>
-							{/volist}
-						{/volist}
-					</table>
-					
-				</div>
-				
-			</div>
-		</div>
-
-		
-	</div>
-</body>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>权限菜单管理</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		<div class="row">
+			<div class="col-md-2 head_left">
+				<div class="">
+					<a class="btn btn-info btn-lg" href="__MODULE__/index/index">后台管理</a>
+				</div>
+			</div>
+			<div class="col-md-10 head_right">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-9"></div>
+					<div class="col-md-2">
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+						  	<i class="fa fa-user fa-fw"></i>
+
+						    {$Think.session.username}
+
+						    <span class="caret"></span>
+
+						  </button>
+
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+						    <li><a href="__MODULE__/persetting/index"><i class="fa fa-cog"></i>个人设置</a></li>
+
+						    <li><a href="#">Another action</a></li>
+
+						    <li><a href="#">Something else here</a></li>
+
+						    <li role="separator" class="divider"></li>
+
+						    <li><a href="__MODULE__/Login/logout"><i class="fa fa-power-off" aria-hidden="true"></i>退出</a></li>
+
+						  </ul>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- 头部END -->
+		<div class="row">
+			<div class="col-md-2">
+				{include file="public:menu"/}		
+			</div>
+			<div class="col-md-10">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-2">
+							<h4>权限菜单管理<small>>>主页</small></h4>
+						</div>
+						<div class="col-md-7"></div>
+						<div class="col-md-3">
+							<h4>
+								<a class="btn btn-info" href="__MODULE__/permission/add">添加权限</a>
+							</h4>
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid">
+					<table class="table table-bordered">
+						<tr class="success">
+							<th>编号</th>
+							<th>名称</th>
+							<th>url</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+						{volist name="list" id="vo"}
+							<tr>
+								<td>{$vo.id}</td>
+								<td>{$vo.per_name}</td>
+								<td>{$vo.controller}/{$vo.action}</td>
+								<td>{$vo.status}</td>
+								<td>
+									<a href="__MODULE__/permission/edit/id/{$vo.id}">修改</a>
+									<a href="__MODULE__/permission/del/id/{$vo.id}">删除</a>
+								</td>
+							</tr>
+							{volist name="vo.child" id="vi"}
+								<tr>
+									<td>{$vi.id}</td>
+									<td>\\\\\\\\\\\\\\{$vi.per_name}</td>
+									<td>{$vi.controller}/{$vi.action}</td>
+									<td>{$vi.status}</td>
+									<td>
+									<a href="__MODULE__/permission/edit/id/{$vi.id}">修改</a>
+									<a href="__MODULE__/permission/del/id/{$vi.id}">删除</a>
+									</td>
+								</tr>
+							{/volist}
+						{/volist}
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
 </html>
