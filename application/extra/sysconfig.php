@@ -1,1 +1,0 @@
-<?php return ['sys_basehost'=>'http://127.0.0.1','sys_webname'=>'公司信息采集系统1',];

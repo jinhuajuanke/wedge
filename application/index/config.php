@@ -1,1 +1,0 @@
-<?php return ['sys_basehost'=>'http://crm.itulan.com','sys_webname'=>'公司信息采集系统','sys_powerby'=>'Copyright © 2008-2016 荼兰策划 版权所有','sys_beian'=>'鲁ICP备08024325-5号','sys_stow_limit'=>'50',];
