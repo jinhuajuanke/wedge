@@ -166,8 +166,10 @@ class Excel extends Allow
                 $user['company_name']=trim($data[$i][0]);
                 $user['linkman']=trim($data[$i][1]);
                 $user['telphone']=trim($data[$i][2]);
-                $user['register_time']=trim($data[$i][3]);
-                $user['address']=trim($data[$i][4]);
+                $user['qq']=trim($data[$i][3]);
+                $user['guhua']=trim($data[$i][4]);
+                $user['register_time']=trim($data[$i][5]);
+                $user['address']=trim($data[$i][6]);
 
                 $map['company_name']=trim($data[$i][0]);
                 $map['linkman']=trim($data[$i][1]);

@@ -32,15 +32,15 @@ return [
 
     // 数据库名
 
-    'database'        => 'csolivetree',
+    'database'        => 'crmitul_thinkphp',
 
     // 用户名
 
-    'username'        => 'csolivetree',
+    'username'        => 'crmitul_thinkphp',
 
     // 密码
 
-    'password'        => 'f8ae8f43ef',
+    'password'        => 'TtMRVUT14Gap',
 
     // 端口
 

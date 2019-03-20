@@ -89,7 +89,9 @@ class Staff extends Allow{
 
         if(session("userid")==1){
             $where['a.condition']=1;
-            $where['a.group_id']=3;
+           
+            $where['a.group_id']=['in','2,3'];
+            
         }else {
 
             $where['a.group_id']=3;

@@ -4,9 +4,10 @@
 
 <head>
 
-	<title>我的客户公海--{$Think.config.sys_webname}</title>
+	<title>我的客户--{$Think.config.sys_webname}</title>
 
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
 	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/collect.css">
@@ -134,8 +135,8 @@
 					</div>
 
 
-
-					<table class="table table-bordered table-striped table-responsive table-hover">
+				<div class="table-responsive">
+					<table class="table table-bordered table-striped  table-hover table-condensed">
 
 						<tr class="info">
 
@@ -346,7 +347,7 @@
 						{/volist}
 
 					</table>
-
+				</div>
 					{$list->render()}
 
 				</div>
