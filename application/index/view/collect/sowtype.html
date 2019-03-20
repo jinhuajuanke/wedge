@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BD状态管理--{$Think.config.sys_webname}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/collect.css">
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		{include file="public/head"/}
+		
+		<!-- 头部END -->
+		<div class="row">
+			<div class="col-md-2">
+				{include file="public/menu"/}
+			</div>
+			<div class="col-md-10">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-3">
+							<h4>BD状态管理<small>>>移动BD状态</small></h4>
+							
+						</div>
+						<div class="col-md-6"></div>
+						<div class="col-md-3">
+							<h4>
+
+							</h4>
+						</div>
+					</div>
+					
+				</div>
+				<div class="container-fluid">
+					<div class="alert">
+						<div class="row">
+							<div class="col-md-6">
+								<form action="__MODULE__/collect/movetype" method="post" class="form-inline">
+					        		<div class="form-group">
+					        			<label>BD状态&nbsp;&nbsp;&nbsp;</label>
+					        			
+					        			<select class="form-control" name="stowtypeid" >
+					        				<option>--请选择移动到的分类--</option>
+					        				{volist name="dclass" id="class"}
+					        					<option value="{$class.id}" {if condition="$stowtypeid eq $class.id"}selected{/if}  >{$class.type_name}</option>
+					        				{/volist}
+					        			</select>
+
+					        		</div>
+					        		<input type="hidden" name="id" value="{$id}">
+					        		<input type="hidden" name="aid" value="{$aid}">
+					        		
+					        		<input type="hidden" name="mid" value="{$Think.session.userid}">
+					        		<button type="submit" class="btn btn-warning">移动分类</button>
+					        	</form>
+							</div>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+	<script type="text/javascript">
+	
+	</script>
+						
+</body>
+</html>

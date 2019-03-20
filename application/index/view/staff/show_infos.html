@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>员工任务概况</title>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/staff.css">
+
+	<link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<!-- 头部 -->
+
+		{include file="public/head"/}
+
+		
+
+		<!-- 头部END -->
+
+		<div class="row">
+
+			<div class="col-md-2">
+
+				{include file="public/menu"/}
+
+			</div>
+
+			<div class="col-md-10">
+
+				<div class="page-header">
+
+					<div class="row">
+
+						<div class="col-md-2">
+
+							<h4>员工任务概况<small>>>主页</small></h4>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="container-fluid">
+
+
+
+					<div class="alert alert-info">
+
+						<form class="form-inline">
+
+							<div class="form-group">
+
+								<div class="input-group">
+
+									<div class="input-group-addon"> 姓名</div>
+
+									<input type="text" name="nickname" class="form-control" placeholder="搜索姓名">
+
+									
+
+								</div>
+
+							</div>
+
+							<div class="form-group">
+
+								<select name="orderby" class="form-control">
+
+									<option value="">--排序--</option>
+
+									<option value="stat_class desc" {if condition="$orderby eq 'stat_class desc'"}selected{/if}>BD状态</option>
+
+									<option value="stat_stow desc" {if condition="$orderby eq 'stat_stow desc'"}selected{/if}>我的客户</option>
+
+									<option value="stat_b2 desc" {if condition="$orderby eq 'stat_b2 desc'"}selected{/if}>B2状态</option>
+
+									<option value="stat_p1 desc" {if condition="$orderby eq 'stat_p1 desc'"}selected{/if}>P1状态</option>
+
+								</select>
+
+							</div>
+							<button class="btn btn-primary" type="submit">搜索</button>
+						</form>
+					</div>
+					<table class="table">
+						<tr class="warning">
+							<th>编号</th>
+							<th>姓名</th>
+							<th>B2数量</th>
+							<th>P1数量</th>
+							<th>BD状态数量</th>
+							<th>我的客户</th>
+							<th>备注数量</th>
+							<th>操作</th>
+						</tr>
+
+						{volist name="list" id="vo"}
+
+						<tr>
+
+							<td>{$vo.id}</td>
+							<td>{$vo.nickname}</td>
+							<td>{$vo.stat_b2}</td>
+							<td>{$vo.stat_p1}</td>
+							<td>{$vo.stat_class}</td>
+							<td>{$vo.stat_stow}</td>
+							<td>{$vo.stat_note}</td>
+							<td>
+								<a class="btn btn-info btn-sm" href="__MODULE__/staff/checkTask/id/{$vo.id}">工作详情</a>
+							</td>
+						</tr>
+						{/volist}
+					</table>				
+
+				</div>
+				{$list->render()}
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

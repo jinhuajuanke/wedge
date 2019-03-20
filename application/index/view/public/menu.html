@@ -1,0 +1,167 @@
+		<div class="panel panel-default">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;系统设置
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			      	<div class="panel-body">
+			        	<div class="list-group">
+			        		
+						    <a class="list-group-item persetting" href="__MODULE__/persetting/index">个人设置</a>
+						    <a class="list-group-item admin" {notin name="$Think.session.userid" value="$Think.config.group" }style="display:none;"{/notin} href="__MODULE__/admin/index">账户管理</a>
+						    <a {notin name="$Think.session.userid" value="1" }style="display:none;"{/notin} class="list-group-item agroup" href="__MODULE__/agroup/index">用户组管理</a>
+						    <a {if condition="$Think.session.userid neq 1"}style="display:none;"{/if} class="list-group-item permission" href="__MODULE__/permission/index">权限管理</a>
+						    <a {if condition="$Think.session.userid neq 1"}style="display:none;"{/if} class="list-group-item systemindex" href="__MODULE__/system/index">系统基本参数</a>
+
+			        	</div>
+			      	</div>
+			    </div>
+			  </div>
+			  	<div class="panel panel-default" {notin name="$Think.session.userid" value="$Think.config.group" }style="display:none;"{/notin}>
+				    <div class="panel-heading" role="tab" id="headingTwo">
+				      	<h4 class="panel-title">
+				        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-male" aria-hidden="true"></i>&nbsp;&nbsp;
+				          员工管理 
+				        </a>
+				      	</h4>
+				    </div>
+				    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				      	<div class="panel-body">
+				        	<div class="list-group">
+
+				        		<a class="list-group-item staffindex" href="__MODULE__/staff/index">
+				        			员工数据概况
+				        		</a>
+				        		<a class="list-group-item Infos" href="__MODULE__/staff/showInfos">
+				        			员工任务概况
+				        		</a>
+				        		<a class="list-group-item stowtype" href="__MODULE__/collect/mstowtype">
+				        			BD状态管理
+				        		</a>
+				        	</div>
+				      	</div>
+				    </div>
+			  	</div>
+			  	<div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="headingFour">
+				      	<h4 class="panel-title">
+				        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				          <i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;&nbsp;数据管理 
+				        </a>
+				      	</h4>
+				    </div>
+				    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+				      	<div class="panel-body">
+				        	<div class="list-group">
+
+				        		<a class="list-group-item collectindex" href="__MODULE__/collect/index">
+				        			客户公海
+				        		</a>
+				        		<a class="list-group-item shoucang" href="__MODULE__/collect/stow">
+				        			我的客户
+				        		</a>
+				        		
+				        		
+				        	</div>
+				      	</div>
+				    </div>
+			  	</div>
+			</div>
+		</div>
+	<script type="text/javascript">
+		
+		var path=location.pathname;
+		
+		if(path.match("admin")){
+			$(".admin").addClass("active");
+			$("#collapseOne").addClass("in");
+			
+		}
+		if(path.match("permission/index")){
+			$(".permission").addClass("active");
+			$("#collapseOne").addClass("in");
+			
+		}
+		if(path.match("permission/add")){
+			$(".permission").addClass("active");
+			$("#collapseOne").addClass("in");
+			
+		}
+		//修改权限菜单页面
+		if(path.match("permission/edit")){
+			$(".permission").addClass("active");
+			$("#collapseOne").addClass("in");
+			
+		}
+		if(path.match("persetting")){
+			$(".persetting").addClass("active");
+			$("#collapseOne").addClass("in");
+
+		}
+		if(path.match("agroup")){
+			$(".agroup").addClass("active");
+			$("#collapseOne").addClass("in");
+		}
+		if(path.match("agroup/permission")){
+			$(".agroup").addClass("active");
+			$("#collapseOne").addClass("in");
+		}
+		if(path.match("collect/index")){
+			$(".collectindex").addClass("active");
+			$("#collapseFour").addClass("in");
+		}
+		if(path.match("collect/stow")){
+			$(".shoucang").addClass("active");
+			$("#collapseFour").addClass("in");
+		}
+		if(path.match("mstowtype")){
+			$(".stowtype").addClass("active");
+			$("#collapseTwo").addClass("in");
+		}
+		
+		if(path.match("sowtype")){
+			$(".shoucang").addClass("active");
+			$("#collapseFour").addClass("in");
+		}
+		//添加收藏分类
+		if(path.match("addstow")){
+			$(".stowtype").addClass("active");
+			$("#collapseTwo").addClass("in");
+		}
+		//修改收藏分类
+		if(path.match("editClass")){
+			$(".stowtype").addClass("active");
+			$("#collapseTwo").addClass("in");
+		}
+		//手动添加数据页面
+		if(path.match("writeIn/addData")){
+			$(".shoucang").addClass("active");
+			$("#collapseFour").addClass("in");
+		}
+		//员工管理页面
+
+		if(path.match("staff/index")){
+			$(".staffindex").addClass("active");
+			$("#collapseTwo").addClass("in");
+		}
+		if(path.match("staff/showInfos")){
+			$(".Infos").addClass("active");
+			$("#collapseTwo").addClass("in");
+		}
+		if(path.match("checkTask")){
+			$(".Infos").addClass("active");
+			$("#collapseTwo").addClass("in");
+		}
+		if(path.match("system/index")){
+			$(".systemindex").addClass("active");
+			$("#collapseOne").addClass("in");
+		}
+
+		
+
+	</script>

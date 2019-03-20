@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>账户管理</title>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/font-awesome/css/font-awesome.min.css" >
+
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+
+
+
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<!-- 头部 -->
+
+		{include file="public/head"/}
+
+		<!-- 头部END -->
+
+		<div class="row">
+
+			<div class="col-md-2">
+
+				{include file="public:menu"/}		
+
+			</div>
+
+			<div class="col-md-10">
+
+
+
+				
+
+				<div class="page-header">
+
+					<div class="row">
+
+						<div class="col-md-2">
+
+							<h3>账户管理<small>>>主页</small></h3>
+
+							
+
+						</div>
+
+						<div class="col-md-7"></div>
+
+						<div class="col-md-3">
+
+							<h4>
+
+
+
+								<a class="btn btn-info" href="__MODULE__/admin/add">添加账户</a>
+
+							</h4>
+
+						</div>
+
+					</div>
+
+					
+
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="alert alert-info">
+								<form method="post" class="form-inline">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">姓名</span>
+											<input type="text" name="nickname" value="{$nickname}" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<select class="form-control" name="group_id">
+											<option value="">--请选择角色--</option>
+											{volist name="list" id="vo"}
+												<option value="{$vo.id}" {if condition="$vo.id eq $group_id"}selected{/if}>{$vo.groupname}</option>
+											{/volist}
+										</select>
+									</div>
+									<button class="btn btn-warning" type="submit">搜索</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					
+					<table class="table table-bordered table-striped">
+
+						<tr class="warning">
+
+							<th>编号</th>
+
+							<th>登录账号</th>
+
+							<th>姓名</th>
+
+							<th>角色</th>
+
+							<th>账号状态</th>
+
+							<th>最后登录IP</th>
+
+							<th>最后登录时间</th>
+
+							<th>操作</th>
+
+						</tr>
+
+						{volist name="data" id="vo" empty="暂时没数据"}
+
+						<tr>
+
+							<td>{$vo.adminid}</td>
+
+							<td>{$vo.username}</td>
+
+							<td>{$vo.nickname}</td>
+
+							<td>{$vo.groupname}</td>
+
+							<td>{if condition="$vo.condition eq 1"}正常{/if}
+
+							{if condition="$vo.condition eq 0"}禁用{/if}</td>
+
+							<td>{$vo.loginip}</td>
+
+							<td>{:date('Y-m-d H:i:s',$vo.logintime)}</td>
+
+							<td>
+
+								<a href="__MODULE__/admin/edit/id/{$vo.adminid}" class="btn btn-warning btn-sm">修改</a>
+
+								<a href="__MODULE__/admin/del/id/{$vo.adminid}" class="btn btn-warning btn-sm deluser">删除</a>
+
+							</td>
+
+						</tr>
+
+						{/volist}
+
+
+					</table>
+{$data->render()}
+				</div>
+
+				
+
+			</div>
+
+		</div>
+
+
+
+		
+
+	</div>
+
+	<script type="text/javascript">
+
+		$(".deluser").click(function(){
+
+			message=confirm("确认要删除这条数据吗？");
+
+			if(message==true){
+
+				return true;
+
+			}else {
+
+				return false;
+
+			}
+
+		})
+
+	</script>
+
+</body>
+
+</html>

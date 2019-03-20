@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>用户组权限设置</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+	<link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/base.css">
+	<script type="text/javascript" src="__STATIC__/admin/js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		{include file="public/head"/}
+		<!-- 头部END -->
+		<div class="row">
+			<div class="col-md-2">
+				{include file="public:menu"/}		
+			</div>
+			<div class="col-md-10">
+
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-2">
+							<h4>用户组权限管理<small>>>设置</small></h4>
+							
+						</div>
+						<div class="col-md-7"></div>
+						<div class="col-md-3">
+							<h4>
+								<a class="btn btn-info" href="__MODULE__/agroup/add">添加用户组</a>
+
+								<a class="btn btn-info" href="__MODULE__/admin/index">系统用户管理</a>
+							</h4>
+						</div>
+					</div>
+					
+				</div>
+				<div class="container">
+					<div class="alert alert-info">
+						<span>组名称：{$user_group_name}</span>
+					</div>
+					<div class="row">
+						
+							<form action="__MODULE__/agroup/create_per" method="post">
+								<table class="table table-bordered">
+									<tr>
+										{volist name="list" id="vo" }
+										<td>
+											<div class="checkbox">
+												<label>
+
+													<input type="checkbox" 
+													 {volist name="rule" id="ke"}
+													 {if condition="$vo.id eq $ke"} checked {/if} {/volist} name="rule[]" value="{$vo.id}">
+														
+													{$vo.per_name}
+												</label>
+												{volist name="vo.child" id="vi"}
+													<div class="checkbox">
+														&nbsp;&nbsp;&nbsp;|&nbsp;|&nbsp;<label>
+															<input type="checkbox" {volist name="rule" id="ke"}
+													 {if condition="$vi.id eq $ke"} checked {/if} {/volist} name="rule[]" value="{$vi.id}">{$vi.per_name}
+														</label>
+													</div>
+												{/volist}
+											</div>
+										</td>
+										{/volist}
+									</tr>
+								</table>
+								<input type="hidden" name="id" value="{$user_group_id}">
+								<button class="btn btn-info" type="submit">提交</button>
+							</form>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+
+		
+	</div>
+</body>
+</html>
